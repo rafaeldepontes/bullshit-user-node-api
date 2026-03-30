@@ -30,6 +30,31 @@ app.put("/users/:id", async (req, res) => {
     const id = parseInt(req.params.id)
     const body = req.body
 
+    if (!body || !body.name || !body.id || body.name == null || body.id == null) {
+        res.status(400).json({message: "Name is required"})
+        return
+    }
+    let user = mock.find((u) => u.id === id)
+    if (!user) {
+        res.status(404).json({message: "User not found"})
+        return
+    }
+
+    const idx = mock.indexOf(user);
+    if (idx > -1) {
+        mock.splice(idx, 1);
+    }
+
+    user = body
+    mock.push(user)
+
+    res.status(200).json(user)
+})
+
+app.patch("/users/:id", (req, res) => {
+    const id = parseInt(req.params.id)
+    const body = req.body
+
     if (!body || !body.name || body.name == null) {
         res.status(400).json({message: "Name is required"})
         return
