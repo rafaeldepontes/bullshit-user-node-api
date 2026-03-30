@@ -76,5 +76,21 @@ app.patch("/users/:id", (req, res) => {
     res.status(200).json(user)
 })
 
+app.delete("/users/:id", (req, res) => {
+    const id = parseInt(req.params.id)
+
+    const user = mock.find((u) => u.id === id)
+    if (!user) {
+        res.status(404).json({message: "User not found"})
+        return
+    }
+
+    const idx = mock.indexOf(user);
+    if (idx > -1) {
+        mock.splice(idx, 1);
+    }
+    res.status(204)
+})
+
 console.log(`API running on port ${port}`)
 app.listen(port)
