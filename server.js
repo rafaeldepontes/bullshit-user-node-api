@@ -1,6 +1,10 @@
 import express from "express";
 
+// TODO: refactor this and put eveything into multiple files following some bullshit
+// principle like clean arch or clean code... don't care...
+
 const port = process.env.PORT ?? "8080"
+// TODO: use a real database
 let mock = [
     {id: 1, name: "John"},
     {id: 2, name: "Doe"}
@@ -9,6 +13,7 @@ let mock = [
 const app = express()
 app.use(express.json())
 
+// FIXME: should have any level of security, at least "Bearer <TOKEN>" verification
 app.get("/users", (req, res) => {
     mock.sort((a, b) => a.id - b.id)
     res.status(200).json(mock)
