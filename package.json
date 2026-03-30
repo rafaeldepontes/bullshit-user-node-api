@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/rafaeldepontes/bullshit-user-node-api/issues"
   },
-  "homepage": "https://github.com/rafaeldepontes/bullshit-user-node-api#readme"
+  "homepage": "https://github.com/rafaeldepontes/bullshit-user-node-api#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
 }
